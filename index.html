@@ -15,17 +15,31 @@ crossorigin="anonymous"></script>
 <body>
     
 <div class="container">
-
     <h1>Prelinger TV</h1>
-<iframe class="responsive-iframe" id="tv-player" src="https://archive.org/download/0194_Two_Pay_Days_13_27_12_00/0194_Two_Pay_Days_13_27_12_00.mp4" frameborder="0" width = "100%" height="100%" allowfullscreen="allowfullscreen"></iframe>
+    <!-- <div class="bordered-box"> -->
+    <!-- <div class="row"> -->
+        <!-- <div class="col-sm-12" id="iss-television"> -->
+            <video autoplay class="responsive-iframe" id="tv-player" src="" frameborder="0" width = "100%" height="100%" controls allowfullscreen="allowfullscreen"></video>
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
 <br>
 
 <!-- <button type="button" class="btn" id="back"><i class="fa fa-fast-backward"></i></button>
 <button type="button" class="btn" onclick="play()"id="play"> <i class="fa fa-play"></i> </button>
 <button type="button" class="btn" onclick="stop()"id="stop"> <i class="fa fa-stop"></i> </button>
 <button type="button" class="btn" onclick="next()"id="next"><i class="fa fa-fast-forward"></i></button> -->
-<button type="button" class="btn" onclick="changeMovie()" id="refresh"><i class="fa fa-refresh"></i> </button>
+<!-- <a class="btn" button type="submit" href="www.google.com"></a> -->
 
+    <div class="nav-bar">
+        <a href="" id="video-link" target="_blank">
+    <button type="submit" class="btn" id="video-src"> <i class="fa fa-home"></i> </button></a>
+    <button type="button" class="btn" onclick="changeMovie()" id="refresh"><i class="fa fa-refresh"></i> </button>
+    <a href="" id="video-download-src" download>
+    <button type="submit" class="btn" id="video-src"> <i class="fa fa-download" aria-hidden="true"></i></button></a>
+    </div>
+
+    <!-- <a href="" id="video-link">Info</a> -->
 </div>
 </body>
 
@@ -50,7 +64,7 @@ function fetchJSONFile(path, callback) {
 // this requests the file and executes a callback with the parsed result once
 //   it is available
 window.onload = function(){
-fetchJSONFile('prelinger31.json', function(data){
+fetchJSONFile('prelinger.json', function(data){
     // do something with your data
     console.log(data);
     const JSONObject = JSON.parse(data);
@@ -64,9 +78,17 @@ fetchJSONFile('prelinger31.json', function(data){
 function changeMovie(){
     var randomnumber = Math.floor(Math.random() * (key.length))
     var new_src = ((values[randomnumber]))
+    var new_title = ((key[randomnumber]))
     document.getElementById('tv-player').src = new_src
+    document.getElementById('video-download-src').href = new_src
+    document.getElementById('video-src').onclick = function(){
+        console.log("you clicked me");
+        document.getElementById('video-link').href = new_title
+
+    }
+    new_title
     console.log("changing the movie")
-}
+};
 
 // function resizeIframe(obj) {
 //     obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
